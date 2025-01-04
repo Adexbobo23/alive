@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+	
+<!-- Mirrored from ailive.co/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Jan 2025 22:18:56 GMT -->
+<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+<head>
+		<!-- Required meta tags -->
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Title  -->
+		<title>AILIVE | Making Machine Learning Accessible for Everyone</title>
+		<meta name="description" content="Making Machine Learning Accessible for Everyone.">
+		<link rel="apple-touch-icon" sizes="57x57" href="src/img/favicons/apple-icon-57x57.png">
+		<link rel="apple-touch-icon" sizes="60x60" href="src/img/favicons/apple-icon-60x60.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="src/img/favicons/apple-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="76x76" href="src/img/favicons/apple-icon-76x76.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="src/img/favicons/apple-icon-114x114.png">
+		<link rel="apple-touch-icon" sizes="120x120" href="src/img/favicons/apple-icon-120x120.png">
+		<link rel="apple-touch-icon" sizes="144x144" href="src/img/favicons/apple-icon-144x144.png">
+		<link rel="apple-touch-icon" sizes="152x152" href="src/img/favicons/apple-icon-152x152.png">
+		<link rel="apple-touch-icon" sizes="180x180" href="src/img/favicons/apple-icon-180x180.png">
+		<link rel="icon" type="image/png" sizes="192x192"  href="src/img/favicons/android-icon-192x192.png">
+		<link rel="icon" type="image/png" sizes="32x32" href="src/img/favicons/favicon-32x32.png">
+		<link rel="icon" type="image/png" sizes="96x96" href="src/img/favicons/favicon-96x96.png">
+		<link rel="icon" type="image/png" sizes="16x16" href="src/img/favicons/favicon-16x16.png">
+		<link rel="manifest" href="src/img/favicons/manifest.json">
+		<!-- local icons -->
+		<link rel="stylesheet" id="icons" href="vendors/bootstrap-icons/font/bootstrap-icons.min.css">
+		<!-- cdn icons -->
+		<!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"> -->
+		<!-- Development css (used in all pages) -->
+		<link rel="stylesheet" href="src/css/style.css">
+
+		<!-- customizer css -->
+		<link rel="stylesheet" href="src/css/customizer.css">
+
+		<!-- google font -->
+		<link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+
+		<link href="../api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.css" rel="stylesheet">
+		<script src="../api.mapbox.com/mapbox-gl-js/v2.15.0/mapbox-gl.js"></script>
+
+		<script type="importmap">
+            { "imports": { "three": "./node_modules/three/build/three.module.js", "three/addons/": "./node_modules/three/examples/jsm/"} }
+        </script>
+
+		<script type="module" src="mujoco/main.js"></script>
+	</head>
+	<body class="bg-black text-primary-600 font-sans pt-14 lg:pt-0" x-data="{ sidebar: false }">
+		<!-- Google tag (gtag.js) -->
+		<script async src="https://www.googletagmanager.com/gtag/js?id=G-JS8Z9V5Y79"></script>
+		<script>
+			window.dataLayer = window.dataLayer || [];
+			function gtag(){dataLayer.push(arguments);}
+			gtag('js', new Date());
+
+			gtag('config', 'G-JS8Z9V5Y79');
+		</script>
+		<picture role="presentation" class="fixed -z-20" style="filter: brightness(0.3) blur(10px);visibility: visible;transform: scale(var(--motion-scale));opacity: 1;--motion-scale: 1;">
+			<source media="(min-width:1280px)" srcset="https://arwes.dev/assets/images/background-large.webp" type="image/webp">
+			<source media="(min-width:1280px)" srcset="https://arwes.dev/assets/images/background-large.jpg" type="image/jpeg">
+			<source media="(min-width:768px)" srcset="https://arwes.dev/assets/images/background-medium.webp" type="image/webp">
+			<source media="(min-width:768px)" srcset="https://arwes.dev/assets/images/background-medium.jpg" type="image/jpeg">
+			<source media="(max-width:767px)" srcset="https://arwes.dev/assets/images/background-small.webp" type="image/webp">
+			<img class="w-fulll" src="../arwes.dev/assets/images/background-small.jpg" alt="Background" style="width: 100vw;">
+		</picture>
+		<div style="background: url('src/img/dots.png');background-size: 90%;" class="fixed -z-10 w-full h-full"></div>
+		<div class="wrapper pages-container">
+			<!-- header -->
+			<header class="z-20 fixed lg:hidden top-0 inset-x-0 flex items-center justify-between gap-2 bg-black border-b border-primary-600 px-6 py-3">
+				<!-- logo -->
+				<a href="index.html" class="flex items-center gap-2 flex justify-center items-center  animate-pulse">
+					<div class="flex justify-center items-center min-h-10 min-w-10">
+						<img src="src/img/logo.png" class="h-12">
+						<div class="size-2 bg-primary-300 rounded-full absolute"></div>
+					</div>
+					<h3 class="text-3xl font-medium" style="color: #92fdfd;text-shadow: 0 0 13px white;letter-spacing: 0.25em;">AILIVE</h3>
+				</a>
+				<!-- navigation -->
+				<button @click="sidebar = ! sidebar" class="flex items-center justify-center size-10">
+					<i class="bi bi-list text-2xl text-primary-300"></i>
+				</button>
+			</header>
+
+			<!-- sidebar -->
+			<aside id="sidebar" :class="! sidebar ? '' : 'show'"
+				class="fixed inset-y-0 start-0 sidebar flex flex-col gap-6 w-72 lg:min-w-72 lg:[&.show]:min-w-[0px] h-screen overflow-auto scrollbars bg-black border-e border-primary-600 transition-all duration-500 ease-in-out -translate-x-full lg:translate-x-0 [&.show]:translate-x-0 max-lg:z-50 rtl:translate-x-full lg:rtl:translate-x-0 px-4">
+				<!-- logo -->
+				<a href="index.html" class="pt-4 flex flex-col justify-center items-center animate-pulse">
+					<div class="flex justify-center items-center min-h-10 min-w-10">
+						<img src="src/img/logo.png" class="h-12">
+						<div class="size-2 bg-primary-300 rounded-full absolute"></div>
+					</div>
+					<h3 class="text-3xl font-medium" style="color: #92fdfd;text-shadow: 0 0 13px white;letter-spacing: 0.25em;">AILIVE</h3>
+				</a>
+				<!-- sidebar menu -->
+				<ul x-data="{ activePage: 'trainings', submenu: null }" id="menu" class="flex-1">
+					<!--<li class="relative">
+						<div :class="{ 'active text-black bg-primary-300': activePage === 'users' }" onclick="ailive.pages.load('users')" class="flex items-center gap-2 py-2 px-4 font-medium hover:bg-primary-300 hover:text-black item-corner cursor-pointer">
+							<i class="bi bi-person-circle text-lg"></i> Users
+						</div>
+					</li>
+					<li class="relative">
+						<a @click="submenu !== 'agents' ? submenu = 'agents' : submenu = null" :class="{ 'active text-black bg-primary-300': submenu === 'agents' }" href="javascript:void(0)" class="flex items-center gap-2 py-2 px-4 font-medium hover:bg-primary-300 hover:text-black item-corner">
+						<i class="bi bi-robot text-lg"></i> Agents
+						<i :class="{ 'rotate-180': submenu === 'agents' }" class="bi bi-chevron-down ms-auto transition-transform duration-200"></i>
+						</a>
+						<ul x-show="submenu === 'agents'" class="ps-3 flex flex-col">
+							<li>
+								<div class="flex py-2 ps-8 pe-4 font-medium hover:bg-primary-300 hover:text-black item-corner cursor-pointer" onclick="ailive.pages.load('agents-humanoid')" >Humanoid Agents</div>
+							</li>
+						</ul>
+					</li>-->
+					<li class="relative">
+						<div :class="{ 'active text-black bg-primary-300': activePage === 'agents' }" onclick="ailive.pages.load('agents', true, true)" class="flex items-center gap-2 py-2 px-4 font-medium hover:bg-primary-300 hover:text-black item-corner cursor-pointer">
+							<a href="app/index.html"><i class="bi bi-robot text-lg"></i> BUY</a>
+						</div>
+					</li>
+					<li class="relative">
+						<div :class="{ 'active text-black bg-primary-300': activePage === 'skills' }" onclick="ailive.pages.load('skills', true, true)" class="flex items-center gap-2 py-2 px-4 font-medium hover:bg-primary-300 hover:text-black item-corner cursor-pointer">
+							<a href="app/index.html"><i class="bi bi-stars text-lg"></i> Sell</a>
+						</div>
+					</li>
+					<li class="relative">
+						<div :class="{ 'active text-black bg-primary-300': activePage === 'competitions' }" onclick="ailive.pages.load('world', true, true)" class="flex items-center gap-2 py-2 px-4 font-medium hover:bg-primary-300 hover:text-black item-corner cursor-pointer">
+							<a href="app/index.html"><i class="bi bi-globe-americas text-lg"></i> Connect Wallet</a>
+						</div>
+					</li>
+					<li class="relative">
+						<div :class="{ 'active text-black bg-primary-300': activePage === 'competitions' }" onclick="ailive.pages.load('competitions', true, true)" class="flex items-center gap-2 py-2 px-4 font-medium hover:bg-primary-300 hover:text-black item-corner cursor-pointer">
+							<a href="app/index.html"><i class="bi bi-trophy text-lg"></i> Claim Airdrop</a>
+						</div>
+					</li>
+					<li class="relative">
+						<div :class="{ 'active text-black bg-primary-300': activePage === 'marketplace' }" onclick="ailive.pages.load('marketplace', true, true)" class="flex items-center gap-2 py-2 px-4 font-medium hover:bg-primary-300 hover:text-black item-corner cursor-pointer">
+							<a href="app/index.html"><i class="bi bi-shop text-lg"></i> Marketplace</a>
+						</div>
+					</li>
+					<!--
+						<li class="relative">
+							<a @click="submenu !== 'marketplace' ? submenu = 'marketplace' : submenu = null" :class="{ 'active text-black bg-primary-300': submenu === 'marketplace' }" href="javascript:void(0)" class="flex items-center gap-2 py-2 px-4 font-medium hover:bg-primary-300 hover:text-black item-corner">
+								<i class="bi bi-shop text-lg"></i>
+								Marketplace
+								<i :class="{ 'rotate-180': submenu === 'marketplace' }" class="bi bi-chevron-down ms-auto transition-transform duration-200"></i>
+							</a>
+							<ul x-show="submenu === 'marketplace'" class="ps-3 flex flex-col">
+								<li>
+									<div onclick="ailive.pages.load('marketplace-explore')" class="flex py-2 ps-8 pe-4 font-medium hover:bg-primary-300 hover:text-black item-corner cursor-pointer">Explore</div>
+								</li>
+								<li>
+									<div onclick="ailive.pages.load('marketplace-sell')" class="flex py-2 ps-8 pe-4 font-medium hover:bg-primary-300 hover:text-black item-corner cursor-pointer">Sell an Agent</div>
+								</li>
+								<li>
+									<div onclick="ailive.pages.load('marketplace-history')" class="flex py-2 ps-8 pe-4 font-medium hover:bg-primary-300 hover:text-black item-corner cursor-pointer">Transaction History</div>
+								</li>
+							</ul>
+						</li>
+						-->
+				</ul>
+				<!-- banner -->
+				<div class="bg-black frame-corner p-6 w-full mt-auto overflow-hidden">
+					<div class="frame-second absolute inset-0 border border-primary-600"></div>
+					<div class="relative flex flex-col items-center gap-4 justify-between">
+						<code class="text-xl font-normal tracking-wide" style="color: #92fdfd; text-shadow: 0 0 13px white; letter-spacing: 0.25em;">$AILIVE</code>
+						<a href="https://docs.ailive.co/" target="_blank" rel="nofollow" class="uppercase group frame-corner w-full inline-flex items-center gap-2 justify-center px-4 py-2 font-medium border border-primary-600 text-primary-600 hover:border-primary-300 hover:text-black focus:text-black focus:border-primary-300 hover:bg-primary-300 focus:bg-primary-300 focus:outline-none focus:ring-0 tracking-widest">
+							Documentation <i class="bi bi-box-arrow-up-right"></i>
+						</a>
+						<div class="flex gap-2">
+							<a href="https://dexscreener.com/solana/3He53vyEdBSD3Pxx5vAJ4AzQz3GXLXYBvKcYiTJ2pump" target="_blank" rel="nofollow" class="w-full inline-flex items-center gap-2 justify-center p-2 font-medium border border-primary-600 text-primary-600 hover:border-primary-300 focus:text-black focus:border-primary-300 hover:bg-primary-900 focus:bg-primary-300 focus:outline-none focus:ring-0">
+								<img src="src/img/dex-screener.svg" class="h-4 py-0.25">
+							</button>
+							<a href="https://x.com/ailiveco" target="_blank" rel="nofollow" class="w-full inline-flex items-center gap-2 justify-center p-2 font-medium border border-primary-600 text-primary-600 hover:border-primary-300 focus:text-black focus:border-primary-300 hover:bg-primary-900 focus:bg-primary-300 focus:outline-none focus:ring-0">
+								<img src="src/img/x.svg" class="h-4 py-0.25">
+							</button>
+							<a href="https://t.me/ailiveco" target="_blank" rel="nofollow" class="w-full inline-flex items-center gap-2 justify-center p-2 font-medium border border-primary-600 text-primary-600 hover:border-primary-300 focus:text-black focus:border-primary-300 hover:bg-primary-900 focus:bg-primary-300 focus:outline-none focus:ring-0">
+								<img src="src/img/tg.svg" class="h-5">
+							</a>
+							<a href="https://github.com/ailiveco" target="_blank" rel="nofollow" class="w-full inline-flex items-center gap-2 justify-center p-2 font-medium border border-primary-600 text-primary-600 hover:border-primary-300 focus:text-black focus:border-primary-300 hover:bg-primary-900 focus:bg-primary-300 focus:outline-none focus:ring-0">
+								<img src="src/img/github.svg" class="h-5">
+							</a>
+							<a href="https://pump.fun/coin/3He53vyEdBSD3Pxx5vAJ4AzQz3GXLXYBvKcYiTJ2pump" target="_blank" rel="nofollow" class="w-full inline-flex items-center gap-2 justify-center p-2 font-medium border border-primary-600 text-primary-600 hover:border-primary-300 focus:text-black focus:border-primary-300 hover:bg-primary-900 focus:bg-primary-300 focus:outline-none focus:ring-0">
+								<img src="src/img/pumpfun.png" class="h-5">
+							</a>
+						</div>
+					</div>
+
+					<div class="border-t border-primary-900 mt-6 pt-4 flex flex-col gap-2 px-1 text-center items-center">
+						<div class="text-lg font-medium ">Phase II: The Creations</div>
+						<div x-data="phaseCountdown()" class="text-center">
+							<div class="tracking-wide">
+							  <span x-text="days"></span>d 
+							  <span x-text="hours"></span>h 
+							  <span x-text="minutes"></span>m 
+							  <span x-text="seconds"></span>s
+							</div>
+						</div>
+					</div>
+
+
+				</div>
+			</aside>
+			<!-- bg sidebar -->
+			<div @click="sidebar = ! sidebar" :class="! sidebar ? '' : 'show'" class="backDialog z-30 overflow-auto fixed bg-black bg-opacity-80 max-lg:[&.show]:inset-0"></div>
+			
+			<!--start of content header-->
+			<div class="flex items-center justify-between gap-3 lg:ms-72 px-6 pt-4">
+				<div onclick="ailive.pages.history.goPrev()" id="nav-goback" class="w-fit flex gap-2 text-sm items-centerjustify-center p-2 px-4 cursor-pointer text-primary-600 hover:text-primary-300 focus:outline-none focus:ring-0 opacity-0">
+					<i class="bi bi-arrow-left" class="h-4"></i> Go Back
+				</div>
+				<div class="flex item-center olwuyhsbcnmdj ghsnkalieksml">
+					<div x-data="{ dropdown: false }" class="relative flex items-center gap-2">
+						<!--<button onclick="ailive.auth.login.popup(true)" @XXXXXXclick="dropdown = ! dropdown" class="flex items-center justify-center group gap-2 font-semibold">
+							<span class="group-hover:text-primary-300">Log In</span>
+						</button>
+						<span>or</span>
+						<button onclick="ailive.auth.signup.popup(true)" @XXXXXXclick="dropdown = ! dropdown" class="flex items-center justify-center group gap-2 font-semibold">
+							<span class="group-hover:text-primary-300">Create an Account</span>
+						</button>-->
+
+						<button onclick="ailive.auth.waitlist.popup(true)" @XXXXXXclick="dropdown = ! dropdown" class="flex items-center justify-center group gap-2 font-semibold">
+							<span class="group-hover:text-primary-300">Join Waitlist</span>
+						</button>
+						
+						<button onclick="ailive.auth.login.popup(true)" @XXXXXXclick="dropdown = ! dropdown" class="flex items-center justify-center group gap-2 hidden">
+							<div class="flex items-center justify-center w-8 h-8 rounded-full bg-primary-950 border border-primary-600 group-hover:bg-primary-300 hover:text-black focus:bg-primary-300 focus:text-black">
+								<i class="bi bi-person-fill text-xl flex"></i>
+							</div>
+							<span class="group-hover:text-primary-300">Lunami</span>
+						</button>
+						
+						<ul x-show="dropdown" x-transition.duration.500ms @click.outside="dropdown = false" class="absolute top-[2.5rem] z-30 transition duration-400 ease-in-out start-auto end-0 min-w-[180px] rounded-lg bg-primary-950 border border-primary-600 overflow-hidden">
+							<li class="relative">
+								<a href="users/profile.html" class="flex gap-3 p-2 pt-4 hover:text-primary-300 hover:bg-primary-900">
+									<i class="bi bi-person-fill"></i>
+									Profile
+								</a>
+							</li>
+							<li class="relative">
+								<a href="auth/logout.html" class="flex gap-3 p-2 pb-4 hover:text-primary-300 hover:bg-primary-900">
+									<i class="bi bi-box-arrow-right"></i>
+									Logout
+								</a>
+							</li>
+						</ul>
+					</div>
+				</div>
+				
+			</div>
+			<!--end of content header-->
+
+			<!-- <a href="#" style="height: 40px; width: 100px;">Claim Airdrop</a> -->
+		</div>
+			
+
+		<style>
+			.thsjkalsueijm {
+				gap: 0.5rem;
+			}
+
+			.jdsnfsdnjsdmn {
+				flex-direction: column;
+			}
+			.ghsnkalieksml {
+				gap: 1rem;
+			}
+			.uioajsncmhdje {
+				padding-left: 1rem;
+				padding-right: 1rem;
+			}
+			.thsjkalsueijm {
+				gap: 0.5rem;
+			}
+			.qaksleiuryhnv {
+				justify-content: center;
+			}
+		</style>
+
+
+		<div class="modal modal-alert" x-data="{ open: false }">
+			<div x-show="open" @keydown.escape.window="open = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" style="display: none;">
+				<div @click.away="open = false" x-show="open" class="bg-black frame-corner overflow-hidden max-w-xl w-full p-6 mx-4" x-transition.duration.500ms>
+					<div class="frame2 absolute inset-0 border border-primary-600"></div>
+					<div class="relative flex justify-between items-center">
+						<h2 class="text-lg font-semibold text-primary-300 modal-title"></h2>
+						<button @click="open = false" class="hover:text-primary-300 focus:outline-none">
+						<i class="bi bi-x-lg"></i>
+						</button>
+					</div>
+					
+					<div class="relative p-6 sm:p-8"><div class="text-center modal-content"></div></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal modal-waitlist" x-data="{ open: false }">
+			<div x-show="open" @keydown.escape.window="open = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" style="display: none;">
+				<div @click.away="open = false" x-show="open" class="bg-black frame-corner overflow-hidden max-w-xl w-full p-6 mx-4" x-transition.duration.500ms>
+					<div class="frame2 absolute inset-0 border border-primary-600"></div>
+					<div class="relative flex justify-between items-center mb-4">
+						<h2 class="text-2xl font-semibold text-primary-300">Join Waitlist</h2>
+						<button @click="open = false" class="hover:text-primary-300 focus:outline-none">
+						<i class="bi bi-x-lg"></i>
+						</button>
+					</div>
+					<div>Join the waitlist to create and train your AI agents.</div>
+
+					<div class="hidden alert-success py-2.5 uioajsncmhdje rounded text-sm flex thsjkalsueijm olwuyhsbcnmdj bnshkajshwjio border border-green-600 bg-green-950 text-green-300">
+						<div class="flex olwuyhsbcnmdj gap-1">
+						  	<strong class="text-green-300">Success!</strong> Your email address has been added to the list.
+						</div>
+					</div>
+					  
+					<div class="relative p-6 sm:p-8 max-lg:order-1 input-area">
+						<form class="flex flex-col gap-4">
+						  	<div class="flex jdsnfsdnjsdmn thsjkalsueijm">
+								<label for="waitlist-email">Email</label>
+								<input type="email" id="waitlist-email" class="w-full uioajsncmhdje py-2 bg-primary-950 border border-primary-600 focus:shadow-sm focus:border-primary-300 focus:text-primary-300 placeholder-[#145269] focus:outline-none focus:ring-0" placeholder="Your email address" required="">
+						  	</div>
+				
+						  	<button type="submit" onclick="event.preventDefault(); ailive.auth.waitlist.submit()" class="btn-fill frame-corner w-full inline-flex items-center thsjkalsueijm qaksleiuryhnv uioajsncmhdje py-2 uppercase font-medium bg-primary-400 border border-primary-400 text-black hover:bg-primary-300 focus:bg-primary-300 focus:outline-none focus:ring-0 mt-4 mb-2">Submit</button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!--
+		<div class="modal modal-login" x-data="{ open: false }">
+			<div x-show="open" @keydown.escape.window="open = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" style="display: none;">
+				<div @click.away="open = false" x-show="open" class="bg-black frame-corner overflow-hidden max-w-xl w-full p-6 mx-4" x-transition.duration.500ms>
+					<div class="frame2 absolute inset-0 border border-primary-600"></div>
+					<div class="relative flex justify-between items-center mb-4">
+						<h2 class="text-2xl font-semibold text-primary-300">Log In</h2>
+						<button @click="open = false" class="hover:text-primary-300 focus:outline-none">
+						<i class="bi bi-x-lg"></i>
+						</button>
+					</div>
+
+					<div class="relative p-6 sm:p-8 max-lg:order-1">
+						<form action="otp.html" class="flex flex-col gap-4">
+						  	<div class="flex jdsnfsdnjsdmn thsjkalsueijm">
+								<label for="input-email">Username</label>
+								<input type="email" id="input-email" class="w-full uioajsncmhdje py-2 bg-primary-950 border border-primary-600 focus:shadow-sm focus:border-primary-300 focus:text-primary-300 placeholder-[#145269] focus:outline-none focus:ring-0" placeholder="Your email address" required="">
+						  	</div>
+						  	<div class="flex jdsnfsdnjsdmn thsjkalsueijm">
+								<div class="flex items-center justify-between">
+									<label for="input-pass">Password</label>
+								</div>
+								<input type="password" id="input-pass" class="w-full uioajsncmhdje py-2 bg-primary-950 border border-primary-600 focus:shadow-sm focus:border-primary-300 focus:text-primary-300 placeholder-[#145269] focus:outline-none focus:ring-0" placeholder="Your password" required="">
+						  	</div>
+				
+						  	<button type="submit" onclick="auth.login.submit()" class="btn-fill frame-corner w-full inline-flex items-center thsjkalsueijm qaksleiuryhnv uioajsncmhdje py-2 uppercase font-medium bg-primary-400 border border-primary-400 text-black hover:bg-primary-300 focus:bg-primary-300 focus:outline-none focus:ring-0 mt-4 mb-2">Log In</button>
+						</form>
+				
+						<div class="text-center">
+						  	Don't have an account? <span onclick="ailive.auth.signup.popup(true)" class="cursor-pointer hover:text-primary-300 font-semibold">Sign up</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		
+		<div class="modal modal-signup" x-data="{ open: false }">
+			<div x-show="open" @keydown.escape.window="open = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-80" style="display: none;">
+				<div @click.away="open = false" x-show="open" class="bg-black frame-corner overflow-hidden max-w-xl w-full p-6 mx-4" x-transition.duration.500ms>
+					<div class="frame2 absolute inset-0 border border-primary-600"></div>
+					<div class="relative flex justify-between items-center mb-4">
+						<h2 class="text-2xl font-semibold text-primary-300">Sign Up</h2>
+						<button @click="open = false" class="hover:text-primary-300 focus:outline-none">
+							<i class="bi bi-x-lg"></i>
+						</button>
+					</div>
+
+					<div class="relative p-6 sm:p-8 max-lg:order-1">
+						<form action="otp.html" class="flex flex-col gap-4">
+						  	<div class="flex jdsnfsdnjsdmn thsjkalsueijm">
+								<label for="input-email">Username</label>
+								<input type="email" id="input-email" class="w-full uioajsncmhdje py-2 bg-primary-950 border border-primary-600 focus:shadow-sm focus:border-primary-300 focus:text-primary-300 placeholder-[#145269] focus:outline-none focus:ring-0" placeholder="Your email address" required="">
+						  	</div>
+						  	<div class="flex jdsnfsdnjsdmn thsjkalsueijm">
+								<div class="flex items-center justify-between">
+									<label for="input-pass">Password</label>
+								</div>
+								<input type="password" id="input-pass" class="w-full uioajsncmhdje py-2 bg-primary-950 border border-primary-600 focus:shadow-sm focus:border-primary-300 focus:text-primary-300 placeholder-[#145269] focus:outline-none focus:ring-0" placeholder="Your password" required="">
+						  	</div>
+						  	<div class="flex jdsnfsdnjsdmn thsjkalsueijm">
+								<div class="flex items-center justify-between">
+									<label for="input-pass">Password</label>
+								</div>
+								<input type="password" id="input-pass" class="w-full uioajsncmhdje py-2 bg-primary-950 border border-primary-600 focus:shadow-sm focus:border-primary-300 focus:text-primary-300 placeholder-[#145269] focus:outline-none focus:ring-0" placeholder="Your password" required="">
+						  	</div>
+				
+						  	<button onclick="auth.signup.submit()" class="btn-fill frame-corner w-full inline-flex items-center thsjkalsueijm qaksleiuryhnv uioajsncmhdje py-2 uppercase font-medium bg-primary-400 border border-primary-400 text-black hover:bg-primary-300 focus:bg-primary-300 focus:outline-none focus:ring-0 mt-4 mb-2">Create an Account</button>
+						</form>
+				
+						<div class="text-center">
+						  	Already have an account? <span onclick="ailive.auth.login.popup(true)" class="cursor-pointer hover:text-primary-300 font-semibold">Log In</span>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>-->
+
+		<!-- charts js -->
+		<script src="vendors/chart.js/dist/chart.umd.js"></script>
+		<script src="vendors/jsvectormap/dist/js/jsvectormap.min.js"></script>
+		<script src="vendors/jsvectormap/dist/maps/world.js"></script>
+		
+		<!-- theme -->
+		<script src="src/js/customizer.js"></script>
+		<script src="src/js/moment.min.js"></script>
+		
+		<!-- intersect -->
+		<script src="vendors/%40alpinejs/intersect/dist/cdn.min.js"></script>
+		<!--start::Global javascript (used in all pages)-->
+		<script src="vendors/alpinejs/dist/cdn.min.js"></script><!-- core js -->
+	</body>
+
+<!-- Mirrored from ailive.co/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 03 Jan 2025 22:19:13 GMT -->
+</html>
